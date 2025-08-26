@@ -24,7 +24,6 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         PictureBox1 = New PictureBox()
-        Label1 = New Label()
         Panel1 = New Panel()
         passwordTextBox = New TextBox()
         usernameTextBox = New TextBox()
@@ -44,15 +43,6 @@ Partial Class Form1
         PictureBox1.Size = New Size(745, 427)
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(8, 7)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(41, 15)
-        Label1.TabIndex = 1
-        Label1.Text = "Label1"
         ' 
         ' Panel1
         ' 
@@ -131,7 +121,6 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(741, 424)
         Controls.Add(Panel1)
-        Controls.Add(Label1)
         Controls.Add(PictureBox1)
         FormBorderStyle = FormBorderStyle.None
         Name = "Form1"
@@ -141,11 +130,9 @@ Partial Class Form1
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents SignInLabel As Label
     Friend WithEvents LoginInButton As Button
