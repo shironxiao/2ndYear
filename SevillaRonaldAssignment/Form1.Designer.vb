@@ -25,6 +25,8 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         PictureBox1 = New PictureBox()
         Panel1 = New Panel()
+        Register = New LinkLabel()
+        account = New Label()
         passwordTextBox = New TextBox()
         usernameTextBox = New TextBox()
         PasswordLabel = New Label()
@@ -37,16 +39,19 @@ Partial Class Form1
         ' 
         ' PictureBox1
         ' 
+        PictureBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(-3, -3)
+        PictureBox1.Location = New Point(-5, 0)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(745, 427)
+        PictureBox1.Size = New Size(764, 429)
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = Color.MidnightBlue
+        Panel1.Controls.Add(Register)
+        Panel1.Controls.Add(account)
         Panel1.Controls.Add(passwordTextBox)
         Panel1.Controls.Add(usernameTextBox)
         Panel1.Controls.Add(PasswordLabel)
@@ -59,9 +64,29 @@ Partial Class Form1
         Panel1.Size = New Size(240, 309)
         Panel1.TabIndex = 2
         ' 
+        ' Register
+        ' 
+        Register.AutoSize = True
+        Register.LinkColor = Color.IndianRed
+        Register.Location = New Point(152, 268)
+        Register.Name = "Register"
+        Register.Size = New Size(49, 15)
+        Register.TabIndex = 7
+        Register.TabStop = True
+        Register.Text = "Register"
+        ' 
+        ' account
+        ' 
+        account.AutoSize = True
+        account.Location = New Point(27, 268)
+        account.Name = "account"
+        account.Size = New Size(131, 15)
+        account.TabIndex = 6
+        account.Text = "Don't have an account?"
+        ' 
         ' passwordTextBox
         ' 
-        passwordTextBox.Location = New Point(15, 189)
+        passwordTextBox.Location = New Point(15, 167)
         passwordTextBox.Name = "passwordTextBox"
         passwordTextBox.PasswordChar = "*"c
         passwordTextBox.Size = New Size(208, 23)
@@ -69,7 +94,7 @@ Partial Class Form1
         ' 
         ' usernameTextBox
         ' 
-        usernameTextBox.Location = New Point(15, 106)
+        usernameTextBox.Location = New Point(15, 93)
         usernameTextBox.Name = "usernameTextBox"
         usernameTextBox.Size = New Size(208, 23)
         usernameTextBox.TabIndex = 4
@@ -78,7 +103,7 @@ Partial Class Form1
         ' 
         PasswordLabel.AutoSize = True
         PasswordLabel.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        PasswordLabel.Location = New Point(15, 159)
+        PasswordLabel.Location = New Point(15, 136)
         PasswordLabel.Name = "PasswordLabel"
         PasswordLabel.Size = New Size(73, 17)
         PasswordLabel.TabIndex = 3
@@ -88,7 +113,7 @@ Partial Class Form1
         ' 
         Usernamelabel.AutoSize = True
         Usernamelabel.Font = New Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Usernamelabel.Location = New Point(13, 77)
+        Usernamelabel.Location = New Point(15, 64)
         Usernamelabel.Name = "Usernamelabel"
         Usernamelabel.Size = New Size(75, 17)
         Usernamelabel.TabIndex = 2
@@ -108,7 +133,7 @@ Partial Class Form1
         ' 
         LoginInButton.BackColor = Color.RoyalBlue
         LoginInButton.ForeColor = Color.Transparent
-        LoginInButton.Location = New Point(76, 240)
+        LoginInButton.Location = New Point(76, 216)
         LoginInButton.Name = "LoginInButton"
         LoginInButton.Size = New Size(82, 40)
         LoginInButton.TabIndex = 0
@@ -119,10 +144,9 @@ Partial Class Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(741, 424)
+        ClientSize = New Size(758, 426)
         Controls.Add(Panel1)
         Controls.Add(PictureBox1)
-        FormBorderStyle = FormBorderStyle.None
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"
@@ -140,5 +164,7 @@ Partial Class Form1
     Friend WithEvents PasswordLabel As Label
     Friend WithEvents Usernamelabel As Label
     Friend WithEvents passwordTextBox As TextBox
+    Friend WithEvents account As Label
+    Friend WithEvents Register As LinkLabel
 
 End Class
