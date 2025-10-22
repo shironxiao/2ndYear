@@ -1,37 +1,50 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Form1
-    Dim connString As String = "server=localhost;user=root;password=;database=login;"
 
     Private Sub LoginInButton_Click(sender As Object, e As EventArgs) Handles LoginInButton.Click
         Dim username As String = usernameTextBox.Text
         Dim password As String = passwordTextBox.Text
 
+        ' ✅ Validate empty fields
         If username = "" Or password = "" Then
             MessageBox.Show("Please enter both username and password.")
             Exit Sub
         End If
 
-        Using conn As New MySqlConnection(connString)
-            Try
-                conn.Open()
-                Dim query As String = "SELECT * FROM users WHERE username=@username AND password=@password"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@username", username)
-                    cmd.Parameters.AddWithValue("@password", password)
+        Try
+            ' ✅ Open connection using modDB
+            openConn(db_name)
 
-                    Dim reader As MySqlDataReader = cmd.ExecuteReader()
-                    If reader.HasRows Then
-                        MessageBox.Show("Login successful!")
-                    Else
-                        MessageBox.Show("Invalid username or password.")
-                    End If
-                    reader.Close()
-                End Using
-            Catch ex As MySqlException
-                MessageBox.Show("Database error: " & ex.Message)
-            End Try
-        End Using
+            cmd = New MySqlCommand("SELECT * FROM users WHERE username=@username", conn)
+            cmd.Parameters.AddWithValue("@username", username)
+
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+            If reader.Read() Then
+                ' ✅ Decrypt stored password
+                Dim storedPassword As String = Decrypt(reader("password").ToString())
+
+                If storedPassword = password Then
+                    MessageBox.Show("Login successful!")
+
+                    ' (Optional) Save current logged-in user
+                    CurrentLoggedUser.id = Convert.ToInt32(reader("id"))
+                    CurrentLoggedUser.username = reader("username").ToString()
+                    CurrentLoggedUser.name = reader("name").ToString()
+
+                Else
+                    MessageBox.Show("Invalid password.")
+                End If
+            Else
+                MessageBox.Show("Username not found.")
+            End If
+
+            reader.Close()
+
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message)
+        End Try
     End Sub
 
     Private Sub Register_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Register.LinkClicked
@@ -39,4 +52,5 @@ Public Class Form1
         registerForm.Show()
         Me.Hide()
     End Sub
+
 End Class
